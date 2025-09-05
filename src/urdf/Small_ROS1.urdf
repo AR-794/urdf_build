@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="small_ros">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.750780574277987 0.954341735128034 1.34935529438364"
+        rpy="0 0 0" />
+      <mass
+        value="0.710093257388919" />
+      <inertia
+        ixx="0.000529443145253426"
+        ixy="1.62020636192378E-10"
+        ixz="1.49082100882583E-07"
+        iyy="0.000714756352485229"
+        iyz="-5.01072927860122E-19"
+        izz="0.000954719018352894" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://small_ros/meshes/base_link_org.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://small_ros/meshes/base_link_org.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Left FR Wheel">
+    <inertial>
+      <origin
+        xyz="1.11022302462516E-16 -0.0124778615939652 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0957871600079529" />
+      <inertia
+        ixx="3.44561506442705E-05"
+        ixy="6.54482645615832E-23"
+        ixz="8.78851612738887E-21"
+        iyy="5.89274974298778E-05"
+        iyz="-9.85136886421259E-20"
+        izz="3.44561506442705E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://small_ros/meshes/Left_FR_Wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://small_ros/meshes/Left_FR_Wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left FR Wheel"
+    type="continuous">
+    <origin
+      xyz="0.66701 -1.3442 0.84361"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="Left FR Wheel" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="10"
+      velocity="10" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="Right FR Wheel">
+    <inertial>
+      <origin
+        xyz="0 0.0124778615939651 -2.22044604925031E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.0957871600079525" />
+      <inertia
+        ixx="3.44561506442703E-05"
+        ixy="6.64305817647008E-22"
+        ixz="2.01883364354439E-21"
+        iyy="5.89274974298776E-05"
+        iyz="-9.98656575344273E-20"
+        izz="3.44561506442703E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://small_ros/meshes/Right_FR_Wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://small_ros/meshes/Right_FR_Wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right FR Wheel"
+    type="continuous">
+    <origin
+      xyz="0.66701 -1.3442 1.0732"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="Right FR Wheel" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      effort="10"
+      velocity="10" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="Left BK Wheel">
+    <inertial>
+      <origin
+        xyz="0 -0.0124778615939652 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0957871600079529" />
+      <inertia
+        ixx="3.44561506442705E-05"
+        ixy="-2.13214112188169E-21"
+        ixz="1.55731613714739E-21"
+        iyy="5.89274974298778E-05"
+        iyz="-9.83429792457241E-20"
+        izz="3.44561506442705E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://small_ros/meshes/Left_BK_Wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://small_ros/meshes/Left_BK_Wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left BK Wheel"
+    type="continuous">
+    <origin
+      xyz="0.84701 -1.3442 0.84361"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="Left BK Wheel" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="10"
+      velocity="10" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="Right BK Wheel">
+    <inertial>
+      <origin
+        xyz="-1.11022302462516E-16 0.0124778615939654 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0957871600079525" />
+      <inertia
+        ixx="3.44561506442703E-05"
+        ixy="-1.40847515961997E-23"
+        ixz="-9.32299681581854E-37"
+        iyy="5.89274974298776E-05"
+        iyz="-9.90908636538242E-20"
+        izz="3.44561506442703E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://small_ros/meshes/Right_BK_Wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://small_ros/meshes/Right_BK_Wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right BK Wheel"
+    type="continuous">
+    <origin
+      xyz="0.84701 -1.3442 1.0732"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="Right BK Wheel" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      effort="10"
+      velocity="10" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+
+  <!-- ros2_control -->
+  <ros2_control name="DiffBotSystem" type="system">
+    <hardware>
+      <plugin>diffbot_hardware/DiffBotSystemHardware</plugin>
+      <param name="device">/dev/ttyUSB0</param>
+      <param name="baud_rate">115200</param>
+    </hardware>
+
+    <joint name="Left FR Wheel JOINT">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="Left BK Wheel JOINT">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="Right FR Wheel JOINT">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="Right BK Wheel JOINT">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+</robot>

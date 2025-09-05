@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="small_ros">
+
+  <!-- Properties/Parameters -->
+  <xacro:property name="use_sim_time" default="true" />
+  <xacro:property name="wheel_separation_front" value="0.2291" /> <!-- Distance between front wheels -->
+  <xacro:property name="wheel_separation_back" value="0.2291" />  <!-- Distance between back wheels -->
+  <xacro:property name="wheelbase" value="0.18" />                <!-- Distance front to back wheels -->
+  <xacro:property name="wheel_diameter" value="0.1" />            <!-- Estimated wheel diameter -->
+  <xacro:property name="wheel_width" value="0.025" />             <!-- Estimated wheel width -->
+  
+  <!-- Material Definitions -->
+  <material name="robot_blue">
+    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+  </material>
+
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.750780574277987 0.954341735128034 1.34935529438364" rpy="0 0 0" />
+      <mass value="15.710093257388919" />
+      <inertia
+        ixx="0.000529443145253426"
+        ixy="1.62020636192378E-10"
+        ixz="1.49082100882583E-07"
+        iyy="0.000714756352485229"
+        iyz="-5.01072927860122E-19"
+        izz="0.000954719018352894" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://small_ros/meshes/base_link.STL" />
+      </geometry>
+      <material name="robot_blue" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://small_ros/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Footprint Link for Navigation -->
+  <link name="base_footprint" />
+  
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint" />
+    <child link="base_link" />
+    <origin xyz="0 0 0.05" rpy="0 0 0" />
+  </joint>
+
+  <!-- Left Front Wheel -->
+  <link name="left_front_wheel_link">
+    <inertial>
+      <origin xyz="1.11022302462516E-16 -0.0124778615939652 0" rpy="0 0 0" />
+      <mass value="1.0957871600079529" />
+      <inertia
+        ixx="3.44561506442705E-05"
+        ixy="6.54482645615832E-23"
+        ixz="8.78851612738887E-21"
+        iyy="5.89274974298778E-05"
+        iyz="-9.85136886421259E-20"
+        izz="3.44561506442705E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://small_ros/meshes/Left_FR_Wheel.STL" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${wheel_diameter/2}" length="${wheel_width}" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="left_front_wheel_joint" type="continuous">
+    <origin xyz="0.66701 -1.3442 0.84361" rpy="-1.5708 0 3.1416" />
+    <parent link="base_link" />
+    <child link="left_front_wheel_link" />
+    <axis xyz="0 1 0" />
+    <limit effort="10" velocity="10" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+
+  <!-- Right Front Wheel -->
+  <link name="right_front_wheel_link">
+    <inertial>
+      <origin xyz="0 0.0124778615939651 -2.22044604925031E-16" rpy="0 0 0" />
+      <mass value="1.0957871600079525" />
+      <inertia
+        ixx="3.44561506442703E-05"
+        ixy="6.64305817647008E-22"
+        ixz="2.01883364354439E-21"
+        iyy="5.89274974298776E-05"
+        iyz="-9.98656575344273E-20"
+        izz="3.44561506442703E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://small_ros/meshes/Right_FR_Wheel.STL" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${wheel_diameter/2}" length="${wheel_width}" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_front_wheel_joint" type="continuous">
+    <origin xyz="0.66701 -1.3442 1.0732" rpy="-1.5708 0 3.1416" />
+    <parent link="base_link" />
+    <child link="right_front_wheel_link" />
+    <axis xyz="0 -1 0" />
+    <limit effort="10" velocity="10" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+
+  <!-- Left Back Wheel -->
+  <link name="left_back_wheel_link">
+    <inertial>
+      <origin xyz="0 -0.0124778615939652 0" rpy="0 0 0" />
+      <mass value="1.0957871600079529" />
+      <inertia
+        ixx="3.44561506442705E-05"
+        ixy="-2.13214112188169E-21"
+        ixz="1.55731613714739E-21"
+        iyy="5.89274974298778E-05"
+        iyz="-9.83429792457241E-20"
+        izz="3.44561506442705E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://small_ros/meshes/Left_BK_Wheel.STL" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${wheel_diameter/2}" length="${wheel_width}" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="left_back_wheel_joint" type="continuous">
+    <origin xyz="0.84701 -1.3442 0.84361" rpy="-1.5708 0 3.1416" />
+    <parent link="base_link" />
+    <child link="left_back_wheel_link" />
+    <axis xyz="0 1 0" />
+    <limit effort="10" velocity="10" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+
+  <!-- Right Back Wheel -->
+  <link name="right_back_wheel_link">
+    <inertial>
+      <origin xyz="-1.11022302462516E-16 0.0124778615939654 0" rpy="0 0 0" />
+      <mass value="1.0957871600079525" />
+      <inertia
+        ixx="3.44561506442703E-05"
+        ixy="-1.40847515961997E-23"
+        ixz="-9.32299681581854E-37"
+        iyy="5.89274974298776E-05"
+        iyz="-9.90908636538242E-20"
+        izz="3.44561506442703E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://small_ros/meshes/Right_BK_Wheel.STL" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${wheel_diameter/2}" length="${wheel_width}" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_back_wheel_joint" type="continuous">
+    <origin xyz="0.84701 -1.3442 1.0732" rpy="-1.5708 0 3.1416" />
+    <parent link="base_link" />
+    <child link="right_back_wheel_link" />
+    <axis xyz="0 -1 0" />
+    <limit effort="10" velocity="10" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+
+  <!-- Gazebo Plugins and Materials -->
+  <xacro:if value="${use_sim_time}">
+    
+    <!-- Gazebo Materials -->
+    <gazebo reference="base_link">
+      <material>Gazebo/Blue</material>
+    </gazebo>
+    
+    <gazebo reference="left_front_wheel_link">
+      <material>Gazebo/DarkGrey</material>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <kp>500000.0</kp>
+      <kd>10.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>0.1</maxVel>
+    </gazebo>
+    
+    <gazebo reference="right_front_wheel_link">
+      <material>Gazebo/DarkGrey</material>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <kp>500000.0</kp>
+      <kd>10.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>0.1</maxVel>
+    </gazebo>
+    
+    <gazebo reference="left_back_wheel_link">
+      <material>Gazebo/DarkGrey</material>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <kp>500000.0</kp>
+      <kd>10.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>0.1</maxVel>
+    </gazebo>
+    
+    <gazebo reference="right_back_wheel_link">
+      <material>Gazebo/DarkGrey</material>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <kp>500000.0</kp>
+      <kd>10.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>0.1</maxVel>
+    </gazebo>
+
+    <!-- Skid Steer Drive Plugin for 4-wheel drive -->
+    <gazebo>
+      <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+        <update_rate>50.0</update_rate>
+        <robot_namespace>/</robot_namespace>
+        <left_front_joint>left_front_wheel_joint</left_front_joint>
+        <right_front_joint>right_front_wheel_joint</right_front_joint>
+        <left_rear_joint>left_back_wheel_joint</left_rear_joint>
+        <right_rear_joint>right_back_wheel_joint</right_rear_joint>
+        <wheel_separation>${wheel_separation_front}</wheel_separation>
+        <wheel_diameter>${wheel_diameter}</wheel_diameter>
+        <robot_base_frame>base_link</robot_base_frame>
+        <torque>20</torque>
+        <topic_name>cmd_vel</topic_name>
+        <broadcast_tf>true</broadcast_tf>
+      </plugin>
+    </gazebo>
+
+    <!-- IMU Plugin -->
+    <gazebo reference="base_link">
+      <sensor name="imu_sensor" type="imu">
+        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+          <ros>
+            <namespace>/</namespace>
+            <remapping>~/out:=imu</remapping>
+          </ros>
+          <initial_orientation_as_reference>false</initial_orientation_as_reference>
+        </plugin>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <visualize>true</visualize>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+                <bias_mean>0.0000075</bias_mean>
+                <bias_stddev>0.0000008</bias_stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+                <bias_mean>0.0000075</bias_mean>
+                <bias_stddev>0.0000008</bias_stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+                <bias_mean>0.0000075</bias_mean>
+                <bias_stddev>0.0000008</bias_stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+                <bias_mean>0.1</bias_mean>
+                <bias_stddev>0.001</bias_stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+                <bias_mean>0.1</bias_mean>
+                <bias_stddev>0.001</bias_stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+                <bias_mean>0.1</bias_mean>
+                <bias_stddev>0.001</bias_stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+      </sensor>
+    </gazebo>
+
+  </xacro:if>
+
+</robot>

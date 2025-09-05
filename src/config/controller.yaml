@@ -1,0 +1,10 @@
+diff_drive_controller:
+  type: "diff_drive_controller/DiffDriveController"
+  left_wheel: ["Left FR Wheel JOINT", "Left BK Wheel JOINT"]
+  right_wheel: ["Right FR Wheel JOINT", "Right BK Wheel JOINT"]
+  wheel_separation: 0.3      # distance between left & right wheels
+  wheel_radius: 0.05
+  publish_rate: 50
+  cmd_vel_timeout: 0.25
+  odom_frame: "odom"
+  base_frame: "base_link"

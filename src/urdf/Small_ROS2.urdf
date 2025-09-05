@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<robot name="small_ros">
+
+  <!-- Root link to rotate the whole robot -->
+  <link name="root_link">
+    <visual>
+      <geometry>
+        <box size="0 0 0"/> <!-- invisible -->
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Fixed joint to rotate base_link with the whole robot -->
+  <joint name="root_to_base" type="fixed">
+    <parent link="root_link"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.1" rpy="-1.0472 0 0"/> <!-- -60° rotation along X -->
+  </joint>
+
+  <!-- Base Link flipped 180° relative to previous -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.009666 0.02034 0.01179" rpy="4.71239 0 0"/> <!-- 180° flip + 90° previous -->
+      <mass value="1.43097"/>
+      <inertia ixx="0.00085569" ixy="-2.21643e-07" ixz="-7.6975e-08"
+               iyy="0.00130504" iyz="2.54638e-08" izz="0.00116708"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="4.71239 0 0"/> <!-- flipped 180° along X -->
+      <geometry>
+        <mesh filename="package://small_ros/meshes/base_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.792 0.8196 0.9333 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="4.71239 0 0"/>
+      <geometry>
+        <mesh filename="package://small_ros/meshes/base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Left Front Wheel -->
+  <link name="Left_FR_Wheel">
+    <inertial>
+      <origin xyz="0.5205 0.0892 -2.2238" rpy="0 0 0"/>
+      <mass value="0.09578"/>
+      <inertia ixx="3.4456e-05" ixy="4.7636e-21" ixz="8.1033e-21"
+               iyy="5.8927e-05" iyz="-8.5566e-20" izz="3.4456e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://small_ros/meshes/left_fr_wheel.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.792 0.8196 0.9333 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://small_ros/meshes/left_fr_wheel.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="Left_FR_Wheel_Joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="Left_FR_Wheel"/>
+    <origin xyz="0.4305 -2.1933 -0.0131" rpy="-1.5708 0 3.1416"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="10" velocity="10"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <!-- Right Front Wheel -->
+  <link name="Right_FR_Wheel">
+    <inertial>
+      <origin xyz="0.5388 -0.1154 -2.4526" rpy="0 0 0"/>
+      <mass value="0.09578"/>
+      <inertia ixx="3.4456e-05" ixy="3.2531e-21" ixz="4.3902e-21"
+               iyy="5.8927e-05" iyz="-9.2052e-20" izz="3.4456e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://small_ros/meshes/right_fr_wheel.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.792 0.8196 0.9333 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://small_ros/meshes/right_fr_wheel.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="Right_FR_Wheel_Joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="Right_FR_Wheel"/>
+    <origin xyz="0.4488 -2.4221 -0.0131" rpy="-1.5708 0 3.1416"/>
+    <axis xyz="0 -1 0"/>
+    <limit effort="10" velocity="10"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <!-- Left Back Wheel -->
+  <link name="Left_BK_Wheel">
+    <inertial>
+      <origin xyz="0.5199 0.0892 -2.2094" rpy="0 0 0"/>
+      <mass value="0.09578"/>
+      <inertia ixx="3.4456e-05" ixy="4.0734e-21" ixz="3.7557e-21"
+               iyy="5.8927e-05" iyz="-8.7837e-20" izz="3.4456e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://small_ros/meshes/left_bk_wheel.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.792 0.8196 0.9333 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://small_ros/meshes/left_bk_wheel.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="Left_BK_Wheel_Joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="Left_BK_Wheel"/>
+    <origin xyz="0.6099 -2.1789 -0.0131" rpy="-1.5708 0 3.1416"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="10" velocity="10"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <!-- Right Back Wheel -->
+  <link name="Right_BK_Wheel">
+    <inertial>
+      <origin xyz="0.5382 -0.1154 -2.4383" rpy="0 0 0"/>
+      <mass value="0.09578"/>
+      <inertia ixx="3.4456e-05" ixy="1.6696e-21" ixz="1.4090e-21"
+               iyy="5.8927e-05" iyz="-9.1041e-20" izz="3.4456e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://small_ros/meshes/right_bk_wheel.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.792 0.8196 0.9333 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://small_ros/meshes/right_bk_wheel.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="Right_BK_Wheel_Joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="Right_BK_Wheel"/>
+    <origin xyz="0.6282 -2.4078 -0.0131" rpy="-1.5708 0 3.1416"/>
+    <axis xyz="0 -1 0"/>
+    <limit effort="10" velocity="10"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+</robot>
